@@ -180,24 +180,24 @@
                                                     </div>
                                                 </div>
                                             </section>
-<!--                                            <section>
-                                                <div>
-                                                    <h3 style="color:white; margin-top: 40px" align="center">General Settings</h3>
-                                                </div>
-                                                <form action="SetFileLocation" method="post">
-                                                    <div class="row" style="margin-top: 20px; margin-bottom: 20px">
-                                                        <div class="col-md-6 form-group contact-forms">
-                                                            <p style="color:white"> Current Location:</p>
-                                                            <p style="color:white;"> <%= PDFConstants.getFILE_REPOSITORY()%> </p> 
-                                                        </div>
-                                                        <div class="col-md-6 form-group contact-forms">
-                                                            <p style="color:white">New Location:</p>
-                                                            <p><input type="text" value="" name="location" placeholder="Copy the Location from address bar" style="width:100%"/></p>                                             
-                                                            <p style="padding-top: 10px"><input type="submit" value="Set" class=" btn btn-success"/></p>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </section>-->
+                                            <!--                                            <section>
+                                                                                            <div>
+                                                                                                <h3 style="color:white; margin-top: 40px" align="center">General Settings</h3>
+                                                                                            </div>
+                                                                                            <form action="SetFileLocation" method="post">
+                                                                                                <div class="row" style="margin-top: 20px; margin-bottom: 20px">
+                                                                                                    <div class="col-md-6 form-group contact-forms">
+                                                                                                        <p style="color:white"> Current Location:</p>
+                                                                                                        <p style="color:white;"> <%= PDFConstants.getFILE_REPOSITORY()%> </p> 
+                                                                                                    </div>
+                                                                                                    <div class="col-md-6 form-group contact-forms">
+                                                                                                        <p style="color:white">New Location:</p>
+                                                                                                        <p><input type="text" value="" name="location" placeholder="Copy the Location from address bar" style="width:100%"/></p>                                             
+                                                                                                        <p style="padding-top: 10px"><input type="submit" value="Set" class=" btn btn-success"/></p>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                        </section>-->
                                         </div>
 
                                         <!-- slider text -->
@@ -205,7 +205,7 @@
                                 </div>
                                 <!-- Carousel -->
                             </div>
-                            <div class="offset-lg-0"></div>
+                            <div class="offset-lg-2"></div>
                         </div>
                     </div>
                 </div>
@@ -213,17 +213,17 @@
             <!-- //banner -->
 
         </div>
-    <!-- //contact -->
-    <!-- Footer -->
-    <footer id="footer" class="py-0" style="bottom:0px;">
-        <div class="container">
+        <!-- //contact -->
+        <!-- Footer -->
+        <section class="py-2 branches position-relative" id="explore">
+            <div class="branches">
+                <div class="row py-lg-5 pt-sm-5">
 
+                </div>
+            </div>
         </div>
-    </footer>
-    <div class="cpy-right text-center py-4">
-        <p>All rights reserved.<a href="http://.com"> </a>
-        </p>
-    </div>
+    </section> 
+    <jsp:include page="Footer.jsp" ></jsp:include>
 </div>
 <!-- /Footer -->
 <!-- js-->

@@ -185,9 +185,9 @@
 
             <!-- //banner-bottom -->
             <!-- about-->
-            <section class="py-0 branches position-relative" id="explore">
+            <section class="py-2 branches position-relative" id="explore">
                 <div class="branches">
-                    <div class="row py-lg-0 pt-sm-5">
+                    <div class="row py-lg-5 pt-sm-5">
 
                     </div>
                 </div>
@@ -195,15 +195,7 @@
     </section>
     <!-- //contact -->
     <!-- Footer -->
-    <footer id="footer" class="py-0">
-        <div class="container">
-
-        </div>
-    </footer>
-    <div class="cpy-right text-center py-4">
-        <p> All rights reserved.<a href="http://.com"> </a>
-        </p>
-    </div>
+    <jsp:include page="Footer.jsp" ></jsp:include>
 </div>
 <!-- /Footer -->
 <!-- js-->

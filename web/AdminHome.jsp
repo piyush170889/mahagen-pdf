@@ -1,4 +1,7 @@
-
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE HTML>
 <html lang="zxx">
 
@@ -175,15 +178,18 @@
     </section>
     <!-- //contact -->
     <!-- Footer -->
-    <footer id="footer" class="py-0">
-        <div class="container">
 
-        </div>
-    </footer>
-    <div class="cpy-right text-center py-4">
-        <p> All rights reserved.<a href="http://.com"> </a>
-        </p>
-    </div>
+    <!--    <footer id="footer" class="py-0" style="background-color:#c9333f;">
+            <div class="container">
+                <h6 style="color: white;">Users Registered:
+                <h6 style="color: white;">Files Uploaded:
+            </div>
+        </footer>
+        <div class="cpy-right text-center py-4">
+            <p> All rights reserved.<a href="http://.com"> </a>
+            </p>
+        </div>-->
+    <jsp:include page="Footer.jsp" ></jsp:include>
 </div>
 <!-- /Footer -->
 <!-- js-->

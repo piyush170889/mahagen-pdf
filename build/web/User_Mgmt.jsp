@@ -221,17 +221,7 @@
             </section>
             <!-- //contact -->
             <!-- Footer -->
-            <footer id="footer" class="py-0">
-                <div>
-
-                    <!--<div class="container">-->
-
-                </div>
-            </footer>
-            <div class="cpy-right text-center py-4">
-                <p> All rights reserved.<a href="http://.com"> </a>
-                </p>
-            </div>
+            <jsp:include page="Footer.jsp" ></jsp:include>
         </div>
         <!-- /Footer -->
         <!-- js-->

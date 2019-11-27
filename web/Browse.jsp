@@ -156,6 +156,7 @@
                                                 <tr>
                                                     <th>Delete</th>
                                                     <th>View</th>
+                                            <a href="AdminDocsView.jsp"></a>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -194,9 +195,9 @@
 
             <!-- //banner-bottom -->
             <!-- about-->
-            <section class="py-0 branches position-relative" id="explore">
+            <section class="py-2 branches position-relative" id="explore">
                 <div class="branches">
-                    <div class="row py-lg-0 pt-sm-5">
+                    <div class="row py-lg-5 pt-sm-5">
 
                     </div>
                 </div>
@@ -204,16 +205,8 @@
     </section>
     <!-- //contact -->
     <!-- Footer -->
-    <footer id="footer" class="py-0">
-        <div class="container">
+<jsp:include page="Footer.jsp" ></jsp:include>
 
-        </div>
-    </footer>
-    <div class="cpy-right text-center py-4">
-        <p> All rights reserved.<a href="http://.com"> </a>
-        </p>
-    </div>
-</div>
 <!-- /Footer -->
 <!-- js-->
 <script src="js/jquery-2.2.3.min.js"></script>

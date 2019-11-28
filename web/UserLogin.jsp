@@ -86,7 +86,7 @@
                             <div class="collapse navbar-collapse navbar-toggle" id="navbarNavAltMarkup1">
                                 <div class="navbar-nav secondfix ml-lg-auto">
                                     <ul class="navbar-nav text-center">
-                                        <li class="nav-item active  mr-3">
+                                        <li class="nav-item">
                                             <a class="nav-link" href="index.jsp">Home</a>
                                         </li>
                                         <li class="nav-item">
@@ -95,7 +95,7 @@
                                             </a>
                                         </li>
 
-                                        <li class="nav-item">
+                                        <li class="nav-item active  mr-3">
                                             <a class="nav-link " href="UserLogin.jsp">User Login</a>
                                         </li>
 
@@ -161,9 +161,9 @@
 
             <!-- //banner-bottom -->
             <!-- about-->
-            <section class="py-5 branches position-relative" id="explore" style="background-color: #c9333f">
+            <section class="py-0 branches position-relative" id="explore" style="background-color: #c9333f">
                 <div class="branches">
-                    <div class="row py-lg-5 pt-sm-5">
+                    <div class="row py-lg-0 pt-sm-5">
 
                     </div>
                 </div>
@@ -188,7 +188,7 @@
 <!-- Scrolling Nav JavaScript -->
 <script src="js/scrolling-nav.js"></script>
 <!-- //fixed-scroll-nav-js -->
-<script>
+<!--<script>
             $(window).scroll(function () {
                 if ($(document).scrollTop() > 70) {
                     $('nav.pagescrollfix,nav.RWDpagescrollfix').addClass('shrink');
@@ -196,7 +196,7 @@
                     $('nav.pagescrollfix,nav.RWDpagescrollfix').removeClass('shrink');
                 }
             });
-</script>
+</script>-->
 <!-- Banner text Responsiveslides -->
 <script src="js/responsiveslides.min.js"></script>
 <script>

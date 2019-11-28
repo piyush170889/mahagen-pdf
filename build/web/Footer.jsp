@@ -58,12 +58,13 @@
     }
 %>
 
-
+<!--
 <footer id="footer" class="py-5">
     <div class="container">
 
     </div>
 </footer>
+-->
 <div class="row cpy-right py-4">
     <div class="col-md-4">
         <p class="text-center"> <strong>All rights reserved.</strong></p>

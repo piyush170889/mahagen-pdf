@@ -185,9 +185,9 @@
 
             <!-- //banner-bottom -->
             <!-- about-->
-            <section class="py-5 branches position-relative" id="explore" style="background-color: #c9333f">
+            <section class="py-0 branches position-relative" id="explore" style="background-color: #c9333f">
                 <div class="branches">
-                    <div class="row py-lg-5 pt-sm-5">
+                    <div class="row py-lg-0 pt-sm-5">
 
                     </div>
                 </div>
@@ -212,7 +212,7 @@
 <!-- Scrolling Nav JavaScript -->
 <script src="js/scrolling-nav.js"></script>
 <!-- //fixed-scroll-nav-js -->
-<script>
+<!--<script>
             $(window).scroll(function () {
                 if ($(document).scrollTop() > 70) {
                     $('nav.pagescrollfix,nav.RWDpagescrollfix').addClass('shrink');
@@ -220,7 +220,7 @@
                     $('nav.pagescrollfix,nav.RWDpagescrollfix').removeClass('shrink');
                 }
             });
-</script>
+</script>-->
 <!-- Banner text Responsiveslides -->
 <script src="js/responsiveslides.min.js"></script>
 <script>

@@ -86,10 +86,10 @@
                             <div class="collapse navbar-collapse navbar-toggle" id="navbarNavAltMarkup1">
                                 <div class="navbar-nav secondfix ml-lg-auto">
                                     <ul class="navbar-nav text-center">
-                                        <li class="nav-item active  mr-3">
+                                        <li class="nav-item">
                                             <a class="nav-link" href="index.jsp">Home</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item active  mr-3">
                                             <a class="nav-link " href="AdminLogin.jsp">HR Admin Login
                                                 <span class="sr-only">(current)</span>
                                             </a>
@@ -188,7 +188,7 @@
 <!-- Scrolling Nav JavaScript -->
 <script src="js/scrolling-nav.js"></script>
 <!-- //fixed-scroll-nav-js -->
-<script>
+<!--<script>
             $(window).scroll(function () {
                 if ($(document).scrollTop() > 70) {
                     $('nav.pagescrollfix,nav.RWDpagescrollfix').addClass('shrink');
@@ -196,7 +196,7 @@
                     $('nav.pagescrollfix,nav.RWDpagescrollfix').removeClass('shrink');
                 }
             });
-</script>
+</script>-->
 <!-- Banner text Responsiveslides -->
 <script src="js/responsiveslides.min.js"></script>
 <script>

@@ -195,7 +195,7 @@
 
             <!-- //banner-bottom -->
             <!-- about-->
-            <section class="py-5 branches position-relative" id="explore" style="background-color: #c9333f">
+            <section class="py-0 branches position-relative" id="explore" style="background-color: #c9333f">
                 <div class="branches">
                     <div class="row py-lg-0 pt-sm-5">
 

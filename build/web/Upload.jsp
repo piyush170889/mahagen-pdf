@@ -1,4 +1,6 @@
-
+<%--<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>--%>
+<%@page import="java.util.ArrayList"%>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <!DOCTYPE HTML>
 <html lang="zxx">
 
@@ -101,7 +103,7 @@
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item active mr-3">
-                                            <a class="nav-link " href="Upload.jsp">Upload PDF</a>
+                                            <a class="nav-link " href="OfficeList">Upload PDF</a>
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item">
@@ -109,7 +111,7 @@
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="Settings.jsp">Settings</a>
+                                            <a class="nav-link " href="Settings.jsp">Configuration</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link " href="Logout1">Logout</a>
@@ -125,9 +127,9 @@
             <!-- banner -->
             <div class="banner">
                 <div class="container">
-                    <div class="banner-text-agile" style="padding: 20px">
+                    <div class="banner-text-agile" style="margin-left: 5%">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div>
                                 <!-- Carousel -->
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
@@ -143,26 +145,42 @@
                                                         <li ><a class="" href="index.jsp" data-toggle="" data-target="#"></a></li>
                                                         <p>
                                                         <center>
-                                                            <form action="UploadFile" method="post" enctype="multipart/form-data">
-                                                                <div>
-                                                                    <p>
-                                                                        <b class="col-md-3" style="color:white">Employee Code:</b> 
-                                                                        <input class="col-md-5" type="text" name="empcode" required=""/>
-                                                                    </p><br/>
+                                                            <form action="UploadFile" method="post" enctype="multipart/form-data" >
+                                                                <div class="row" style="margin: 10px; text-align: left">
+                                                                    <b class="col-6" style="color:white">Employee Code:</b> 
+                                                                    <input class="col-3" type="text" name="empcode" required=""/>
                                                                 </div>
-                                                                <div>
-                                                                    <p>
-                                                                        <b class="col-md-3" style="color:white">CPF No.:</b> <input type="text" name="cpfno" required=""/></p>
-                                                                    <p class="col-md-5">&nbsp;</p>
-                                                                </div>
-                                                                <div>
-                                                                    <p> <b class="col-md-3" style="color:white">Select File:</b>
-                                                                        <input class="col-md-5 btn" type="file" name="fname" required="" style="color:white"/>
-                                                                        <br/><br/>
-                                                                </div>
-                                                                <div>
+                                                                <div class="row" style="margin: 10px">
+                                                                    <b class="col-6" style="color:white; text-align: left">CPF No.:</b> 
+                                                                    <input class="col-3" type="text" name="cpfno" required=""/>
                                                                     
-                                                                    <p> <input style="color: white;" type="submit" value="Upload" class="btn btn-success col-md-3"/> </p> <br/>
+                                                                </div>
+                                                                <div class="row" style="margin: 10px" id="office">
+                                                                    <label class="col-6" style="color:white;margin-left: 0px; text-align: left"><b>Document Type</b></label>
+                                                                    <select class="col-6" name="office" >
+                                                                        <option value="" hidden="true">Select</option>
+<!--                                                                        <c:forEach var="officeListEach" items="${officeList}">
+                                                                            <option  value="${officeListEach}"> ${officeListEach}</option>
+                                                                        </c:forEach>-->
+
+                                                                        <%
+                                                                            ArrayList<String> officeList = (ArrayList<String>) session.getAttribute("officeList");
+                                                                            for (String officeListEach : officeList) {
+                                                                        %>
+                                                                        <option value = "<%=officeListEach%>"> <%=officeListEach%> </option>
+                                                                        <%}%>
+                                                                    </select>
+<!--                                                                    <p>&nbsp;</p>-->
+                                                                    <br>
+                                                                </div>
+                                                                <div class="row" style="margin: 10px">
+                                                                    <b class="col-6" style="color:white; text-align: left; margin-left: 0px">Select File:</b>
+                                                                    <input class="col-5 btn" type="file" name="fname" required="" style="color:white; padding: 0px"/>
+                                                                    <p>&nbsp;</p>
+                                                                    <br>
+                                                                </div>
+                                                                <div class="row" style="margin: 10px">
+                                                                    <input style="color: white;" type="submit" value="Upload" class="btn btn-success col-md-4"/> 
                                                                 </div>
                                                             </form>
                                                         </center>
@@ -269,6 +287,22 @@
 
     });
 </script>
+<!--<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'OfficeList',
+            type: 'get',
+            success: function (data) {
+//                console.log("Data: ", data);
+                  
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                var errorMsg = 'Ajax request failed: ' + xhr.responseText;
+                $('#content').html(errorMsg);
+            }
+        });
+    });
+</script>-->
 <script src="js/SmoothScroll.min.js"></script>
 <!-- //smooth-scrolling-of-move-up -->
 <!-- Bootstrap Core JavaScript -->

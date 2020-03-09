@@ -1,4 +1,5 @@
 
+<%@page import="util.DbUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -95,7 +96,7 @@
                                             <a class="nav-link" href="AdminHome.jsp">Home</a>
                                             <span class="sr-only">(current)</span>
                                         </li>
-                                       
+
                                         <li class="nav-item">
                                             <a class="nav-link " href="User_Mgmt.jsp">User Mgmt</a>
                                             <span class="sr-only">(current)</span>
@@ -106,7 +107,7 @@
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="Upload.jsp">Upload PDF</a>
+                                            <a class="nav-link " href="OfficeList">Upload PDF</a>
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item active  mr-3">
@@ -115,7 +116,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="Settings.jsp">Settings</a>
+                                            <a class="nav-link " href="Settings.jsp">Configuration</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link " href="Logout1">Logout</a>
@@ -130,50 +131,53 @@
             <!-- //header -->
             <!-- banner -->
             <div class="banner">
-                <div class="container">
-                    <div class="banner-text-agile" style="padding: 40px">
+                <div class="container-fluid">
+                    <div class="banner-text-agile" style="margin-left: 5%">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7 col-7">
                                 <!-- Carousel -->
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
                                         <%
                                             String query = request.getParameter("q");
                                             try {
-                                                Class.forName("com.mysql.jdbc.Driver");
-                                                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "root");
+                                                Connection cn = DbUtil.getConnection();
                                                 PreparedStatement ps = cn.prepareStatement("select * from files1");
                                                 //ps.setString(1,query);
                                                 ResultSet rs = ps.executeQuery();
-                                        %>         
-                                        <table id="listofdoc" class="browse_tbl" border="0" cellspacing="10" cellpadding="10" style="background-color: #c9333f;">
-                                            <thead>
-                                                <tr>
-                                                    <th rowspan="2">Employee Code</th>
-                                                    <th rowspan="2">Filename</th>
-                                                    <th colspan="2" rowspan="1">Action</th>
+                                        %>  
+                                        <div style="overflow-x: auto;">
+                                            <table id="listofdoc" class="browse_tbl table-responsive-lg table-responsive-md" border="0" cellspacing="10" cellpadding="10" style="background-color: #c9333f;">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="2">Employee Code</th>
+                                                        <th rowspan="2">Filename</th>
+                                                        <th rowspan="2">Document Type</th>
+                                                        <th colspan="2" rowspan="1">Action</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Delete</th>
+                                                        <th>View</th>
+                                                <a href="AdminDocsView.jsp"></a>
                                                 </tr>
-                                                <tr>
-                                                    <th>Delete</th>
-                                                    <th>View</th>
-                                            <a href="AdminDocsView.jsp"></a>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <%
-                                                    while (rs.next()) {
-                                                %>
-                                                <tr style="background-color:#c9333f !important; ">
-                                                    <td><%out.println(rs.getString("empcode"));%></td>
-                                                    <td><%out.println(rs.getString("filename"));%></td>
-                                                    <td><a href="DeleteFile?fileToDelete=<%=rs.getString("savedFileName")%>">Delete</a></td>
-                                                    <td><a href="DownloadServlet?orgfilename=<%out.println(rs.getString("filename"));%>&filename=<%out.println(rs.getString("savedFileName"));%>" target="_blank">View</a></td>
-                                                </tr>
-                                                <%
-                                                    }
-                                                %>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    <%
+                                                        while (rs.next()) {
+                                                    %>
+                                                    <tr style="background-color:#c9333f !important; ">
+                                                        <td><%out.println(rs.getString("empcode"));%></td>
+                                                        <td><%out.println(rs.getString("filename"));%></td>
+                                                        <td><%out.println(rs.getString("office"));%></td>
+                                                        <td><a href="DeleteFile?fileToDelete=<%=rs.getString("savedFileName")%>">Delete</a></td>
+                                                        <td><a href="DownloadServlet?orgfilename=<%out.println(rs.getString("filename"));%>&filename=<%out.println(rs.getString("savedFileName"));%>" target="_blank">View</a></td>
+                                                    </tr>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <%
                                             } catch (Exception e) {
                                                 System.out.println(e);
@@ -205,27 +209,27 @@
     </section>
     <!-- //contact -->
     <!-- Footer -->
-<jsp:include page="Footer.jsp" ></jsp:include>
+    <jsp:include page="Footer.jsp" ></jsp:include>
 
-<!-- /Footer -->
-<!-- js-->
-<script src="js/jquery-2.2.3.min.js"></script>
-<!-- js-->
-<!-- Scrolling Nav JavaScript -->
-<script src="js/scrolling-nav.js"></script>
-<!-- //fixed-scroll-nav-js -->
-<!--<script>
-            $(window).scroll(function () {
-                if ($(document).scrollTop() > 70) {
-                    $('nav.pagescrollfix,nav.RWDpagescrollfix').addClass('shrink');
-                } else {
-                    $('nav.pagescrollfix,nav.RWDpagescrollfix').removeClass('shrink');
-                }
-            });
-</script>-->
-<!-- Banner text Responsiveslides -->
-<script src="js/responsiveslides.min.js"></script>
-<script>
+    <!-- /Footer -->
+    <!-- js-->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <!-- js-->
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/scrolling-nav.js"></script>
+    <!-- //fixed-scroll-nav-js -->
+    <!--<script>
+                $(window).scroll(function () {
+                    if ($(document).scrollTop() > 70) {
+                        $('nav.pagescrollfix,nav.RWDpagescrollfix').addClass('shrink');
+                    } else {
+                        $('nav.pagescrollfix,nav.RWDpagescrollfix').removeClass('shrink');
+                    }
+                });
+    </script>-->
+    <!-- Banner text Responsiveslides -->
+    <script src="js/responsiveslides.min.js"></script>
+    <script>
             // You can also use"$(window).load(function() {"
             $(function () {
                 // Slideshow 4
@@ -244,12 +248,12 @@
                 });
 
             });
-</script>
-<!-- //Banner text  Responsiveslides -->
-<!-- start-smooth-scrolling -->
-<script src="js/move-top.js"></script>
-<script src="js/easing.js"></script>
-<script>
+    </script>
+    <!-- //Banner text  Responsiveslides -->
+    <!-- start-smooth-scrolling -->
+    <script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
             jQuery(document).ready(function ($) {
                 $(".scroll").click(function (event) {
                     event.preventDefault();
@@ -259,46 +263,48 @@
                     }, 1000);
                 });
             });
-</script>
-<!-- //end-smooth-scrolling -->
-<!-- smooth-scrolling-of-move-up -->
-<script>
-    $(document).ready(function () {
-        /*
-         var defaults = {
-         containerID: 'toTop', // fading element id
-         containerHoverID: 'toTopHover', // fading element hover id
-         scrollSpeed: 1200,
-         easingType: 'linear' 
-         };
-         */
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+             var defaults = {
+             containerID: 'toTop', // fading element id
+             containerHoverID: 'toTopHover', // fading element hover id
+             scrollSpeed: 1200,
+             easingType: 'linear' 
+             };
+             */
 
-        $().UItoTop({
-            easingType: 'easeOutQuart'
-        });
-
-    });
-</script>
-<script src="js/SmoothScroll.min.js"></script>
-<!-- //smooth-scrolling-of-move-up -->
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.js">
-</script>
-<!-- //Bootstrap Core JavaScript -->
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script>
-            $(document).ready(function () {
-                $('#listofdoc').dataTable({
-  "columnDefs": [
-    { "orderable": true, "targets": [0] }
-  ]
-});
-                $('label').css("color", '#fff');
+            $().UItoTop({
+                easingType: 'easeOutQuart'
             });
-</script>
+
+        });
+    </script>
+    <script src="js/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.js">
+    </script>
+    <!-- //Bootstrap Core JavaScript -->
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#listofdoc').dataTable({
+                "responsive": false,
+                "scrollX": false,
+                "columnDefs": [
+                    {"orderable": true, "targets": [0]}
+                ]
+            });
+            $('label').css("color", '#fff');
+        });
+    </script>
 </body>
 
 </html>

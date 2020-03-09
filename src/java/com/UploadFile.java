@@ -6,7 +6,12 @@
 package com;
 
 import com.oreilly.servlet.MultipartRequest;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,18 +56,17 @@ public class UploadFile extends HttpServlet {
             String fname = null, temp;//=m.getParameter("fname");
             String empcode = request.getParameter("empcode");
             String cpfno = request.getParameter("cpfno");
-//            Enumeration files = m.getFileNames();
-//            while (files.hasMoreElements()) {
-//                temp = (String) files.nextElement();
-//                fname = m.getFilesystemName(temp);
-//            }
+            String office = request.getParameter("office");
 
             Connection cn = DbUtil.getConnection();
 
+            int count = 0;
+
             for (Part part : request.getParts()) {
 
+//                System.out.println("F://Test//new.pdf: " + count++);
+//                System.out.println("Part: " + part);
                 fname = getFileName(part);
-                System.out.println("fname = " + fname);
 
                 if (fname != null) {
 
@@ -72,14 +76,28 @@ public class UploadFile extends HttpServlet {
 
                     String fileResourceSavePath = PDFConstants.getFILE_REPOSITORY() + "\\" + fileNameToSave;
                     System.out.println("Uploading to = " + fileResourceSavePath);
-                    part.write(fileResourceSavePath);
+//                    part.write(fileResourceSavePath);
 
+                    InputStream inputStream = null;
+                    OutputStream outputStream = null;
+                    
+                    File outputFile = new File(fileResourceSavePath);
+                    inputStream = part.getInputStream();
+                    outputStream = new FileOutputStream(fileResourceSavePath);
+                    int read = 0;
+                    final byte[] bytes = new byte[1024];
+                    while ((read = inputStream.read(bytes)) != -1){
+                        outputStream.write(bytes, 0, read);
+                    }
+                    outputStream.close();
+                    inputStream.close();
                     PreparedStatement ps = cn.prepareStatement("insert into files1"
-                            + "(empcode, filename, savedFileName, cpfno) values(?,?,?,?)");
+                            + "(empcode, filename, savedFileName, cpfno, office) values(?,?,?,?,?)");
                     ps.setString(1, empcode);
                     ps.setString(2, fname);
                     ps.setString(3, fileNameToSave);
                     ps.setString(4, cpfno);
+                    ps.setString(5, office);
                     ps.execute();
                     ps.close();
 

@@ -101,7 +101,7 @@
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="Upload.jsp">Upload PDF</a>
+                                            <a class="nav-link " href="OfficeList">Upload PDF</a>
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item">
@@ -109,7 +109,7 @@
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="Settings.jsp">Settings</a>
+                                            <a class="nav-link " href="Settings.jsp">Configuration</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link " href="Logout1">Logout</a>

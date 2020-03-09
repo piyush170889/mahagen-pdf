@@ -115,6 +115,14 @@
         <servlet-name>SetFileLocation</servlet-name>
         <servlet-class>com.SetFileLocation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OfficeList</servlet-name>
+        <servlet-class>com.OfficeList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDocumentType</servlet-name>
+        <servlet-class>com.AddDocumentType</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -226,6 +234,14 @@
     <servlet-mapping>
         <servlet-name>SetFileLocation</servlet-name>
         <url-pattern>/SetFileLocation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OfficeList</servlet-name>
+        <url-pattern>/OfficeList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDocumentType</servlet-name>
+        <url-pattern>/AddDocumentType</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

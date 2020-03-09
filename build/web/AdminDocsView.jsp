@@ -103,7 +103,7 @@
                                             <a class="nav-link " href="Searchpdf.jsp">Search PDF</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="Upload.jsp">Upload PDF</a>
+                                            <a class="nav-link " href="OfficeList">Upload PDF</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link " href="Browse.jsp">Browse PDF</a>

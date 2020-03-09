@@ -106,6 +106,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link " href="Browse.jsp">Browse PDF</a>
                                     </li>
+                                    <li class="nav-item active mr-3">
+                                        <a class="nav-link " href="Settings.jsp">Configuration</a>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link " href="Logout1">Logout</a>
                                     </li>

@@ -1,4 +1,5 @@
 
+<%@page import="util.DbUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -105,12 +106,15 @@
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="Upload.jsp">Upload PDF</a>
+                                            <a class="nav-link " href="OfficeList">Upload PDF</a>
                                             <span class="sr-only">(current)</span>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link " href="Browse.jsp">Browse PDF</a>
                                             <span class="sr-only">(current)</span>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="Settings.jsp">Configuration</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link " href="Logout1">Logout</a>
@@ -136,8 +140,7 @@
                                         <%
                                             String query = request.getParameter("q1");
                                             try {
-                                                Class.forName("com.mysql.jdbc.Driver");
-                                                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "root");
+                                                Connection cn = DbUtil.getConnection();
                                                 PreparedStatement ps = cn.prepareStatement("select * from files1 where empcode=?");
                                                 ps.setString(1, query);
                                                 ResultSet rs = ps.executeQuery();
@@ -148,6 +151,7 @@
                                                 <tr>
                                                     <th rowspan="2">Employee Code</th>
                                                     <th rowspan="2">Filename</th>
+                                                    <th rowspan="2">Document Type</th>
                                                     <th colspan="2" rowspan="1">Action</th>
                                                 </tr>
                                                 <tr>
@@ -162,6 +166,7 @@
 
                                                     <td><%out.println(rs.getString("empcode"));%></td>
                                                     <td><%out.println(rs.getString("filename"));%></td>
+                                                    <td><%out.println(rs.getString("office"));%></td>
                                                     <td><a href="DeleteFile?fileToDelete=<%=rs.getString("savedFileName")%>">Delete</a></td>
                                                     <td><a href="DownloadServlet?orgfilename=<%out.println(rs.getString("filename"));%>&filename=<%out.println(rs.getString("savedFileName"));%>" target="_blank">View</a></td>
 

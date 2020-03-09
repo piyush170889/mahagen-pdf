@@ -62,7 +62,8 @@ public class AdminLogin1 extends HttpServlet {
                 pw.println("alert('Login Failed..!');");
                 pw.println("</script>");
 
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                 RequestDispatcher rd = request.getRequestDispatcher("AdminLogin.jsp");
                 rd.include(request, response);
             }
         } catch (Exception e) {

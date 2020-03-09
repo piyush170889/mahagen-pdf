@@ -102,7 +102,7 @@
                                         <a class="nav-link " href="Searchpdf.jsp">Search PDF</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="Upload.jsp">Upload PDF</a>
+                                        <a class="nav-link " href="OfficeList">Upload PDF</a>
                                     </li>
                                     <!--                                        <li class="nav-item">
                                                                                 <a class="nav-link " href="Upload.jsp">Upload PDF</a>
@@ -111,7 +111,7 @@
                                         <a class="nav-link " href="Browse.jsp">Browse PDF</a>
                                     </li>
                                     <li class="nav-item active mr-3">
-                                        <a class="nav-link " href="Settings.jsp">Settings</a>
+                                        <a class="nav-link " href="Settings.jsp">Configuration</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link " href="Logout1">Logout</a>
@@ -145,11 +145,11 @@
                                         <div class="carousel-item active">
                                             <section class="contact py-lg-4 py-md-3 py-sm-3 py-3" id="home_section">
                                                 <div class="row">
-                                                    <div class="col-md-6 offset-4" style="border-style: solid; border-color: white; border-width: 3px">
+                                                    <div class="col-6 offset-3" style="border-style: solid; border-color: white; border-width: 3px">
                                                         <div class="col-md-12" class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">
                                                             <h3 style="color:white; margin: auto; text-align: center;">Change Admin Password</h3>
                                                         </div>
-                                                        <form action="ChangeAdminPassword" method="post">
+                                                        <form  action="ChangeAdminPassword" method="post">
                                                             <div class="row" style="padding-top:2%;">
                                                                 <div class="col-md-4">
                                                                     <label style="color: white" >Old Password</label>
@@ -172,8 +172,25 @@
                                                                 <div class="col-md-6 offset-3 form-group contact-forms" style="padding-top:2%;">
                                                                     <input type="hidden" name="id" value="1" />
                                                                     <center>
-                                                                        <input type="submit" value="Change Password" class=" btn btn-success"/>
+                                                                        <input type="submit" value="Change Password" class="btn btn-success"/>
                                                                     </center>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="row offset-3" >
+                                                    <div class="col-8" style="border-style: solid; border-color: white; border-width: 3px; margin-top: 10px; margin-left: -8px">
+                                                        <form  action="AddDocumentType" method="post">
+                                                            <div class="row">
+                                                                <p style="text-align: center; color: white">Add Document Type</p>
+                                                            </div>
+                                                            <div class="row" style="margin: 10px">
+                                                                <div class="col-10">
+                                                                    <input type="text" style="width: 100%; height: 100%; border-radius: 5px" name="DocumentType">
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <button type="submit" class="btn btn-success">Add</button>
                                                                 </div>
                                                             </div>
                                                         </form>

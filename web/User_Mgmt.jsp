@@ -1,4 +1,5 @@
 
+<%@page import="util.DbUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -103,13 +104,13 @@
                                             <a class="nav-link " href="Searchpdf.jsp">Search PDF</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="Upload.jsp">Upload PDF</a>
+                                            <a class="nav-link " href="OfficeList">Upload PDF</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link " href="Browse.jsp">Browse PDF</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link " href="Settings.jsp">Settings</a>
+                                        <li class="nav-item active mr-3">
+                                            <a class="nav-link " href="Settings.jsp">Configuration</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link " href="Logout1">Logout</a>
@@ -137,66 +138,67 @@
                                         <%
                                             String query = request.getParameter("q");
                                             try {
-                                                Class.forName("com.mysql.jdbc.Driver");
-                                                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "root");
+                                                Connection cn = DbUtil.getConnection();
                                                 PreparedStatement ps = cn.prepareStatement("select * from user");
                                                 //ps.setString(1,query);
                                                 ResultSet rs = ps.executeQuery();
                                         %>
-                                        <div class="row" style="margin:2% 0;">
-                                            <div class="col-md-4">
+                                        <div  class="row" style="margin-left: 5px;">
+                                            <div class="col-md-2" style="margin: 5%">
                                                 <a href="UserRegister.jsp" class="btn btn-success" >Add User?</a>
                                             </div>
                                         </div>
-                                        <table id= "listofemp" class="browse_tbl" border="0" cellspacing="10" cellpadding="10">
-                                            <thead>
-                                                <tr>
-                                                    <th rowspan="2">Name</th>
-                                                    <th rowspan="2">Employee Code</th>
-                                                    <th rowspan="2">CPF No.</th>
-                                                    <th rowspan="2">Username</th>
-                                                    <th rowspan="2">Gender</th>
-                                                    <th rowspan="2">DOB</th>
-                                                    <th rowspan="2">Contact No.</th>
-                                                    <th rowspan="2">Email Id</th>
-                                                    <th rowspan="2">Joining Date</th>
-                                                    <th rowspan="2">End Date</th>
-                                                    <th colspan="2" rowspan="1">Action</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>UPDATE</th>
-                                                    <th>REPORT</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <%
-                                                    while (rs.next()) {
-                                                %>
-                                                <tr>
-                                                    <td><%out.println(rs.getString("name"));%></td>
-                                                    <td><%out.println(rs.getString("empcode"));%></td>
-                                                    <td><%out.println(rs.getString("cpfno"));%></td>
-                                                    <td><%out.println(rs.getString("uname"));%></td>
-                                                    <td><%out.println(rs.getString("gender"));%></td>
-                                                    <td><%out.println(rs.getString("dob"));%></td>
-                                                    <td><%out.println(rs.getString("mob"));%></td>
-                                                    <td><%out.println(rs.getString("email"));%></td>
-                                                    <td><%out.println(rs.getString("jdate"));%></td>
-                                                    <td><%out.println(rs.getString("edate"));%></td>
-                                                    <td><a href="UpdateUser.jsp?id=<%=rs.getString("id")%>">Update</a></td>
-                                                    <td><a href = "AdminDocsView.jsp?empcode=<%=rs.getString("empcode")%>"> Report </a></td>
-                                                </tr>
-                                                <%
-                                                    }
-                                                %>
-                                            </tbody>
-                                        </table>
-                                        <%
-                                            } catch (Exception e) {
-                                                System.out.println(e);
-                                            }%>
+                                        <div class="row" style="margin-left: 5%">
+                                            <table id= "listofemp" class="browse_tbl col-10" border="0" cellspacing="10" cellpadding="10">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="2">Name</th>
+                                                        <th rowspan="2">Employee Code</th>
+                                                        <th rowspan="2">CPF No.</th>
+                                                        <th rowspan="2">Username</th>
+                                                        <th rowspan="2">Gender</th>
+                                                        <th rowspan="2">DOB</th>
+                                                        <th rowspan="2">Contact No.</th>
+                                                        <th rowspan="2">Email Id</th>
+                                                        <th rowspan="2">Joining Date</th>
+                                                        <th rowspan="2">End Date</th>
+                                                        <th colspan="2" rowspan="1">Action</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>UPDATE</th>
+                                                        <th>REPORT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%
+                                                        while (rs.next()) {
+                                                    %>
+                                                    <tr>
+                                                        <td><%out.println(rs.getString("name"));%></td>
+                                                        <td><%out.println(rs.getString("empcode"));%></td>
+                                                        <td><%out.println(rs.getString("cpfno"));%></td>
+                                                        <td><%out.println(rs.getString("uname"));%></td>
+                                                        <td><%out.println(rs.getString("gender"));%></td>
+                                                        <td><%out.println(rs.getString("dob"));%></td>
+                                                        <td><%out.println(rs.getString("mob"));%></td>
+                                                        <td><%out.println(rs.getString("email"));%></td>
+                                                        <td><%out.println(rs.getString("jdate"));%></td>
+                                                        <td><%out.println(rs.getString("edate"));%></td>
+                                                        <td><a href="UpdateUser.jsp?id=<%=rs.getString("id")%>">Update</a></td>
+                                                        <td><a href = "AdminDocsView.jsp?empcode=<%=rs.getString("empcode")%>"> Report </a></td>
+                                                    </tr>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </tbody>
+                                            </table>
+                                            <%
+                                                } catch (Exception e) {
+                                                    System.out.println(e);
+                                                }%>
 
-                                        <!-- slider text -->
+                                            <!-- slider text -->
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- Carousel -->
@@ -212,24 +214,24 @@
             <!-- //banner-bottom -->
             <!-- about-->
             <section class="py-0 branches position-relative" id="explore" style="background-color: #c9333f">
-                            <div class="branches">
-                                <div class="row py-lg-0 pt-sm-5">
-            
-                                </div>
-                            </div>
-            </div>
-            </section>
-            <!-- //contact -->
-            <!-- Footer -->
-            <jsp:include page="Footer.jsp" ></jsp:include>
+                <div class="branches">
+                    <div class="row py-lg-0 pt-sm-5">
+
+                    </div>
+                </div>
         </div>
-        <!-- /Footer -->
-        <!-- js-->
-        <script src="js/jquery-2.2.3.min.js"></script>
-        <!-- js-->
-        <!-- Scrolling Nav JavaScript -->
-        <script src="js/scrolling-nav.js"></script>
-        <!-- //fixed-scroll-nav-js -->
+    </section>
+    <!-- //contact -->
+    <!-- Footer -->
+    <jsp:include page="Footer.jsp" ></jsp:include>
+</div>
+<!-- /Footer -->
+<!-- js-->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!-- js-->
+<!-- Scrolling Nav JavaScript -->
+<script src="js/scrolling-nav.js"></script>
+<!-- //fixed-scroll-nav-js -->
 <!--        <script>
             $(window).scroll(function () {
                 if ($(document).scrollTop() > 70) {
@@ -239,9 +241,9 @@
                 }
             });
         </script>-->
-        <!-- Banner text Responsiveslides -->
-        <script src="js/responsiveslides.min.js"></script>
-        <script>
+<!-- Banner text Responsiveslides -->
+<script src="js/responsiveslides.min.js"></script>
+<script>
             // You can also use"$(window).load(function() {"
             $(function () {
                 // Slideshow 4
@@ -260,12 +262,12 @@
                 });
 
             });
-        </script>
-        <!-- //Banner text  Responsiveslides -->
-        <!-- start-smooth-scrolling -->
-        <script src="js/move-top.js"></script>
-        <script src="js/easing.js"></script>
-        <script>
+</script>
+<!-- //Banner text  Responsiveslides -->
+<!-- start-smooth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
             jQuery(document).ready(function ($) {
                 $(".scroll").click(function (event) {
                     event.preventDefault();
@@ -275,49 +277,49 @@
                     }, 1000);
                 });
             });
-        </script>
-        <!-- //end-smooth-scrolling -->
-        <!-- smooth-scrolling-of-move-up -->
-        <script>
-            $(document).ready(function () {
-                /*
-                 var defaults = {
-                 containerID: 'toTop', // fading element id
-                 containerHoverID: 'toTopHover', // fading element hover id
-                 scrollSpeed: 1200,
-                 easingType: 'linear' 
-                 };
-                 */
+</script>
+<!-- //end-smooth-scrolling -->
+<!-- smooth-scrolling-of-move-up -->
+<script>
+    $(document).ready(function () {
+        /*
+         var defaults = {
+         containerID: 'toTop', // fading element id
+         containerHoverID: 'toTopHover', // fading element hover id
+         scrollSpeed: 1200,
+         easingType: 'linear' 
+         };
+         */
 
-                $().UItoTop({
-                    easingType: 'easeOutQuart'
-                });
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
 
-            });
-        </script>
-        <script src="js/SmoothScroll.min.js"></script>
-        <!-- //smooth-scrolling-of-move-up -->
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.js">
-        </script>
-        <!-- //Bootstrap Core JavaScript -->
+    });
+</script>
+<script src="js/SmoothScroll.min.js"></script>
+<!-- //smooth-scrolling-of-move-up -->
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.js">
+</script>
+<!-- //Bootstrap Core JavaScript -->
 
-        <!--DATATABLES-->
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script>
-                    $(document).ready(function () {
-                        $('#listofemp').dataTable({
-                            "columnDefs": [
-                                {"orderable": false, "targets": [2, 3]}
-                            ]
-                        });
-                        $('label').css("color", '#fff');
-          
-                    });
-        </script>
+<!--DATATABLES-->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#listofemp').dataTable({
+            "columnDefs": [
+                {"orderable": false, "targets": [2, 3]}
+            ]
+        });
+        $('label').css("color", '#fff');
+
+    });
+</script>
 
 
-    </body>
+</body>
 
 </html>

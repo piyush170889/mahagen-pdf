@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import util.DbUtil;
+import util.PDFConstants;
 
 /**
  *
@@ -47,15 +48,15 @@ public class UserDownloadFile extends HttpServlet {
 
         int i = 0;
         HttpSession session = request.getSession();
-        
+
         String email = (String) session.getAttribute("uname");
         String id = (String) session.getAttribute("id");
         System.out.println("com.UserDownloadFile.doGet() id = " + id + ", email  = " + email);
-        
+
         PrintWriter pw = response.getWriter();
-        
+
         Connection cn = DbUtil.getConnection();
-        
+
         try {
             PreparedStatement ps = cn.prepareStatement("select *  from file where id=?");
 
@@ -82,7 +83,6 @@ public class UserDownloadFile extends HttpServlet {
         try {
 
 //            new AESFileDecryption().dodecode("d:/upload/" + filename, "d:/upload/" + fname, txt1);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,20 +92,27 @@ public class UserDownloadFile extends HttpServlet {
         System.out.println("file name is " + fname);
         System.out.println("Download from d:/upload/");
 
-        String filepath = "F:\\PDF\\docs\\";
-        response.setContentType("APPLICATION/OCTET-STREAM");
-        response.setHeader("Content-Disposition", "attachment; filename=\""
-                + fname + "\"");
+//        String filepath = "F:\\PDF\\docs\\";
+//        String filepath;
+        try {
+            String filepath = PDFConstants.getFILE_REPOSITORY() + "\\";
+            response.setContentType("APPLICATION/OCTET-STREAM");
+            response.setHeader("Content-Disposition", "attachment; filename=\""
+                    + fname + "\"");
 
-        FileInputStream fileInputStream = new FileInputStream(filepath
-                + fname);
+            FileInputStream fileInputStream = new FileInputStream(filepath
+                    + fname);
 
-        i = 0;
-        while ((i = fileInputStream.read()) != -1) {
-            out.write(i);
+            i = 0;
+            while ((i = fileInputStream.read()) != -1) {
+                out.write(i);
+            }
+            fileInputStream.close();
+            out.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDownloadFile.class.getName()).log(Level.SEVERE, null, ex);
         }
-        fileInputStream.close();
-        out.close();
+
         RequestDispatcher rd = request.getRequestDispatcher("UserHome.jsp");
         rd.forward(request, response);
 

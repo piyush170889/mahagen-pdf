@@ -1,4 +1,5 @@
-
+ 
+<%@page import="util.DbUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -127,8 +128,7 @@
                                             String username = session.getAttribute("uname").toString();
                                             String empcode = session.getAttribute("empcode").toString();
                                             try {
-                                                Class.forName("com.mysql.jdbc.Driver");
-                                                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "root");
+                                                Connection cn = DbUtil.getConnection();
                                                 //                            PreparedStatement ps = cn.prepareStatement("select * from user where uname=?");
                                                 //                            ps.setString(1,username);
                                                 //                            ResultSet rs = ps.executeQuery();
@@ -146,6 +146,7 @@
                                                 <tr>
                                                     <th>Employee Code</th>
                                                     <th>Filename</th>
+                                                    <th>Document Type</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -156,6 +157,7 @@
                                                 <tr style="background-color:#c9333f;">
                                                     <td><%out.println(rs1.getString("empcode"));%></td>
                                                     <td><%out.println(rs1.getString("filename"));%></td>
+                                                    <td><%out.println(rs1.getString("office"));%></td>
 <!--                                                    <td><a href="DownloadServlet?filename=<%out.println(rs1.getString("filename"));%>" target="_blank">View</a></td>               -->
                                                     <td><a href="DownloadServlet?orgfilename=<%out.println(rs1.getString("filename"));%>&filename=<%out.println(rs1.getString("savedFileName"));%>" target="_blank">View</a></td>
                                                 </tr>

@@ -1,4 +1,5 @@
 
+<%@page import="util.DbUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -48,29 +49,29 @@
                 <div class="header-top text-md-left text-center">
                     <div class="container">
                         <div class="d-md-flex justify-content-between">
-<!--                            <p class="text-capitalize">if you have any question? Call Us +917030945901</p>
-                            <ul class="social-iconsv2 agileinfo mt-md-0 mt-2">
-                                <li class="ml-lg-5">
-                                    <a href="https://www.facebook.com/">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://plus.google.com/discover">
-                                        <i class="fab fa-google-plus-g"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/feed/">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                </li>
-                            </ul>-->
+                            <!--                            <p class="text-capitalize">if you have any question? Call Us +917030945901</p>
+                                                        <ul class="social-iconsv2 agileinfo mt-md-0 mt-2">
+                                                            <li class="ml-lg-5">
+                                                                <a href="https://www.facebook.com/">
+                                                                    <i class="fab fa-facebook-f"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://twitter.com/">
+                                                                    <i class="fab fa-twitter"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://plus.google.com/discover">
+                                                                    <i class="fab fa-google-plus-g"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://www.linkedin.com/feed/">
+                                                                    <i class="fab fa-linkedin-in"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>-->
                         </div>
                     </div>
                 </div>
@@ -90,7 +91,7 @@
                             <div class="collapse navbar-collapse navbar-toggle" id="navbarNavAltMarkup1">
                                 <div class="navbar-nav secondfix ml-lg-auto">
                                     <ul class="navbar-nav text-center">
-                                       <li class="nav-item">
+                                        <li class="nav-item">
                                             <a class="nav-link" href="UserHome.jsp">Home
                                                 <span class="sr-only">(current)</span>
                                             </a>
@@ -103,7 +104,7 @@
                                             <a class="nav-link " href="UserSearchpdf.jsp">Search PDF</a>
                                             <span class="sr-only">(current)</span>
                                         </li> 
-                                       <li class="nav-item">
+                                        <li class="nav-item">
                                             <a class="nav-link " href="Logout1">Logout</a>
                                         </li>
                                     </ul>
@@ -122,49 +123,45 @@
                             <div class="col-lg-8">
                                 <!-- Carousel -->
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                    
-                                    <div class="carousel-inner">
-                                       <%
-                                           String query=request.getParameter("q2");
-                                           String empcode = session.getAttribute("empcode").toString();
-                                           try{
-                            Class.forName("com.mysql.jdbc.Driver");
-                            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "root");
-                            PreparedStatement ps = cn.prepareStatement("select * from files1 where cpfno=?");
-                            ps.setString(1,query);
-                            ResultSet rs = ps.executeQuery();
-                        %>         
-                                            <table class="browse_tbl" border="0" cellspacing="10" cellpadding="10">
 
-                                                <tbody>
-                                                    <tr>
-                                                        <th> Employee Code</th>
-                                                        <th>Filename</th>
-                                                        <th colspan="2">Action</th>
-                                                    </tr>
-                                       <%while(rs.next())
-                                       {  
-                                       %>
-                                                    <tr>
-                                       
-                                                        <td><%out.println(rs.getString("empcode"));%></td>
-                                                        <td><%out.println(rs.getString("filename"));%></td>
-                                                        <td><a href="delete.jsp?file=<%=rs.getString("filename")%>">Delete File</a></td>
-                                                         <td><a href="DownloadServlet?filename=<%out.println(rs.getString("filename"));%>" target="_blank">View</a></td>
-                                                       
-                                                 </tr>
+                                    <div class="carousel-inner">
                                         <%
-                                       }
-                                       %>
-                                                 </tr>
-                                                </tbody>
-                                            </table>
-<%
-                                           }
-                                                        catch(Exception e)
-                                                        {
-                                                            System.out.println(e);
-}%>
+                                            String query = request.getParameter("q2");
+                                            String empcode = session.getAttribute("empcode").toString();
+                                            try {
+                                                Connection cn = DbUtil.getConnection();
+                                                PreparedStatement ps = cn.prepareStatement("select * from files1 where cpfno=?");
+                                                ps.setString(1, query);
+                                                ResultSet rs = ps.executeQuery();
+                                        %>         
+                                        <table class="browse_tbl" border="0" cellspacing="10" cellpadding="10">
+
+                                            <tbody>
+                                                <tr>
+                                                    <th> Employee Code</th>
+                                                    <th>Filename</th>
+                                                    <th colspan="2">Action</th>
+                                                </tr>
+                                                <%while (rs.next()) {
+                                                %>
+                                                <tr>
+
+                                                    <td><%out.println(rs.getString("empcode"));%></td>
+                                                    <td><%out.println(rs.getString("filename"));%></td>
+                                                    <td><a href="delete.jsp?file=<%=rs.getString("filename")%>">Delete File</a></td>
+                                                    <td><a href="DownloadServlet?filename=<%out.println(rs.getString("filename"));%>" target="_blank">View</a></td>
+
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <%
+                                            } catch (Exception e) {
+                                                System.out.println(e);
+                                            }%>
 
                                         <!-- slider text -->
                                     </div>

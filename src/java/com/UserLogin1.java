@@ -64,7 +64,7 @@ public class UserLogin1 extends HttpServlet {
                     pw.println("alert('Login Failed..!');");
                     pw.println("</script>");
                     
-                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("UserLogin.jsp");
                     rd.include(request, response);
                 }
         }catch(Exception e){

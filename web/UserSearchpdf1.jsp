@@ -1,4 +1,5 @@
 
+<%@page import="util.DbUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -131,8 +132,7 @@
                                         String query = request.getParameter("q");
                                         String empcode = session.getAttribute("empcode").toString();
                                         try {
-                                            Class.forName("com.mysql.jdbc.Driver");
-                                            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "root");
+                                            Connection cn = DbUtil.getConnection();
                                             //PreparedStatement ps = cn.prepareStatement("SELECT * FROM files1 WHERE filename LIKE '%" + query + "%'");
                                             PreparedStatement ps = cn.prepareStatement("SELECT * FROM files1 WHERE filename LIKE '%" + query + "%' AND empcode=?");
                                             ps.setString(1, empcode);
@@ -143,6 +143,7 @@
                                             <tr>
                                                 <th> Employee Code</th>
                                                 <th>Filename</th>
+                                                <th>Document Type</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -153,6 +154,7 @@
 
                                                 <td><%out.println(rs.getString("empcode"));%></td>
                                                 <td><%out.println(rs.getString("filename"));%></td>
+                                                <td><%out.println(rs.getString("office"));%></td>
                                                 <td><a href="DownloadServlet?orgfilename=<%out.println(rs.getString("filename"));%>&filename=<%out.println(rs.getString("savedFileName"));%>" target="_blank">View</a></td>
 
                                             </tr>

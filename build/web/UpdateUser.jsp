@@ -1,3 +1,4 @@
+<%@page import="util.DbUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -101,13 +102,16 @@
                                         <a class="nav-link " href="Searchpdf.jsp">Search PDF</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="Upload.jsp">Upload PDF</a>
+                                        <a class="nav-link " href="OfficeList">Upload PDF</a>
                                     </li>
                                     <!--                                        <li class="nav-item">
                                                                                 <a class="nav-link " href="Upload.jsp">Upload PDF</a>
                                                                             </li>-->
                                     <li class="nav-item">
                                         <a class="nav-link " href="Browse.jsp">Browse PDF</a>
+                                    </li>
+                                    <li class="nav-item active mr-3">
+                                        <a class="nav-link " href="Settings.jsp">Configuration</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link " href="Logout1">Logout</a>
@@ -173,8 +177,7 @@
                                                             <%
                                                                 String userId = request.getParameter("id");
                                                                 try {
-                                                                    Class.forName("com.mysql.jdbc.Driver");
-                                                                    Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "root");
+                                                                    Connection cn = DbUtil.getConnection();
                                                                     PreparedStatement ps = cn.prepareStatement("select * from user where id=" + userId);
                                                                     ResultSet rs = ps.executeQuery();
 

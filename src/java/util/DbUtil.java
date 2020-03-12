@@ -22,8 +22,8 @@ public class DbUtil {
 
     private static Connection connection = null;
 
-    public static Connection getConnection() throws IOException {
-        if (connection != null) {
+    public static Connection getConnection() throws IOException, SQLException {
+        if (connection != null && connection.isClosed() == false) {
             return connection;
         } else {
             try {

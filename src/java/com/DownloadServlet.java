@@ -40,7 +40,7 @@ public class DownloadServlet extends HttpServlet {
         String filename = request.getParameter("filename");
         String orgfilename = request.getParameter("orgfilename");
         String filepath = PDFConstants.getFILE_REPOSITORY();
-        String fileResourcePath = filepath + "/" + filename;
+        String fileResourcePath = filepath + "\\" + filename;
 
         System.out.println("FilePath = " + filepath + ", Filename = " + filename + ", orgfilename = " + orgfilename);
 
